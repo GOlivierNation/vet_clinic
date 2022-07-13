@@ -41,7 +41,7 @@ BEGIN;
 
 /* Modify your inserted animals to include owner information (owner_id)*/
 UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'sam smith') WHERE name = 'Agumon';
-UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Jennifer Orwell') WHERE name = 'Gabumon' OR 'Pikachu';
+UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Jennifer Orwell') WHERE name = 'Gabumon' OR name'Pikachu';
 UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Bob') WHERE name = 'Devimon' OR NAME = 'Plantmon';
 UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Melody Pond') WHERE name = 'Charmander' OR name = 'Squirtle' OR name = 'Blossom';
 UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Dean Winchester') WHERE name = 'Angemon' OR name = 'Boarmon';
