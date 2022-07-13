@@ -46,3 +46,6 @@ ALTER TABLE animals ADD COLUMN owner_id INT;
 ALTER TABLE animals ADD FOREIGN KEY(owner_id) REFERENCES owners(id);
 
 COMMIT;
+
+-- Removing species column
+ALTER TABLE animals DROP COLUMN species_id;
