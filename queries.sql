@@ -8,34 +8,6 @@ SELECT name, escape_attempts FROM animals WHERE weight_kg > 10.5;
 SELECT * FROM animals WHERE neutered = 'yes';
 SELECT * FROM animals WHERE name != 'Gabumon'; 
 SELECT * FROM animals WHERE weight_kg >=10.4 AND weight_kg <=17.3;
-
-
-UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
-UPDATE animals SET species = 'pokemon' WHERE species = NULL;
-DELETE FROM animals;
-ROLLBACK BeforeDelete;
-
-UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
-UPDATE animals SET species = 'pokemon' WHERE species = NULL;
-DELETE FROM animals;
-ROLLBACK BeforeDelete;
-
-BEGIN;
--- Delete all animals born after Jan 1st, 2022.
-DELETE FROM animals WHERE date_of_birth > '2022-01-01';
-
-SAVEPOINT SP2;
-
--- Update all animals' weight to be their weight multiplied by -1.
-UPDATE animals SET weight_kg = (weight_kg * (-1));
--- Update all animals' weights that are negative to be their weight multiplied by -1.
-UPDATE animals SET weight_kg = (weight_kg * (-1)) WHERE weight_kg LIKE '%-';
-
-ROLLBACK TO SP2;
-
--- Update all animals' weights that are negative to be their weight multiplied by -1
-UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
-COMMIT;
 -- How many animals are there
 SELECT COUNT(*) FROM animals;
 -- How many animals have never tried to escape
