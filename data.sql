@@ -40,16 +40,11 @@ COMMIT;
 BEGIN;
 
 /* Modify your inserted animals to include owner information (owner_id)*/
-UPDATE animals SET owner_id = 1 WHERE name LIKE 'Agumon';
-UPDATE animals SET owner_id = 2 WHERE name LIKE 'Gabumon';
-UPDATE animals SET owner_id = 2 WHERE name LIKE 'Pikachu';
-UPDATE animals SET owner_id = 3 WHERE name LIKE 'Devimon';
-UPDATE animals SET owner_id = 3 WHERE name LIKE 'Plantmon';
-UPDATE animals SET owner_id = 4 WHERE name LIKE 'Charmander';
-UPDATE animals SET owner_id = 4 WHERE name LIKE 'Squirtle';
-UPDATE animals SET owner_id = 4 WHERE name LIKE 'Blossom';
-UPDATE animals SET owner_id = 5 WHERE name LIKE 'Angemon';
-UPDATE animals SET owner_id = 5 WHERE name LIKE 'Boarman';
+UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'sam smith') WHERE name = 'Agumon';
+UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Jennifer Orwell') WHERE name = 'Gabumon && Pikachu';
+UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Bob') WHERE name = 'Devimon && Plantmon';
+UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Melody Pond') WHERE name = 'Charmander && Squirtle && Blossom';
+UPDATE animals SET owner_id =(SELECT id FROM owners WHERE full_name = 'Dean Winchester') WHERE name = 'Angemon && Boarmon';
 
 COMMIT;
 
