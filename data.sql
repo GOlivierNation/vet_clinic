@@ -52,3 +52,30 @@ UPDATE animals SET owner_id = 5 WHERE name LIKE 'Angemon';
 UPDATE animals SET owner_id = 5 WHERE name LIKE 'Boarman';
 
 COMMIT;
+
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
+UPDATE animals SET species = 'pokemon' WHERE species = NULL;
+DELETE FROM animals;
+ROLLBACK BeforeDelete;
+
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
+UPDATE animals SET species = 'pokemon' WHERE species = NULL;
+DELETE FROM animals;
+ROLLBACK BeforeDelete;
+
+BEGIN;
+-- Delete all animals born after Jan 1st, 2022.
+DELETE FROM animals WHERE date_of_birth > '2022-01-01';
+
+SAVEPOINT SP2;
+
+-- Update all animals' weight to be their weight multiplied by -1.
+UPDATE animals SET weight_kg = (weight_kg * (-1));
+-- Update all animals' weights that are negative to be their weight multiplied by -1.
+UPDATE animals SET weight_kg = (weight_kg * (-1)) WHERE weight_kg LIKE '%-';
+
+ROLLBACK TO SP2;
+
+-- Update all animals' weights that are negative to be their weight multiplied by -1
+UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
+COMMIT;
