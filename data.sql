@@ -74,3 +74,39 @@ ROLLBACK TO SP2;
 -- Update all animals' weights that are negative to be their weight multiplied by -1
 UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
 COMMIT;
+
+INSERT INTO vets(name, age, date_of_graduation)
+VALUES 
+    ('William Tatcher', 45, '2000-04-23'),
+    ('Maisy Smith', 26, '2019-01-17'),
+    ('Stephanie Mendez', 64, '1981-05-04'),
+    ('Jack Harkness', 38, '2008-06-08');
+
+    INSERT INTO specializations(vet_id, species_id)
+VALUES 
+    (1, 1),
+    (3, 2),
+    (3, 1),
+    (4, 2);
+
+    INSERT INTO visits(vet_id, animals_id, date_visited) VALUES 
+(1, 8, '2020-05-24'),
+(3, 8, '2020-07-22'),
+(4, 9, '2021-02-02'),
+(2, 10, '2020-01-05'),
+(2, 10, '2020-03-08'),
+(2, 10, '2020-05-14'),
+(3, 11, '2021-05-04'),
+(4, 1, '2021-02-24'),
+(2, 2, '2019-12-21'),
+(1, 2, '2020-08-10'),
+(2, 2, '2021-04-07'),
+(3, 3, '2019-09-29'),
+(4, 4, '2020-10-03'),
+(4, 4, '2020-11-04'),
+(2, 5, '2019-01-24'),
+(2, 5, '2019-05-15'),
+(2, 5, '2020-02-27'),
+(2, 5, '2020-08-03'),
+(3, 6, '2020-05-24'),
+(1, 6, '2021-01-11');
