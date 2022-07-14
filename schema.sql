@@ -49,3 +49,34 @@ COMMIT;
 
 -- Removing species column
 ALTER TABLE animals DROP COLUMN species_id;
+
+-- Create a table named vets
+CREATE TABLE vets (
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name varchar(100),
+    age integer,
+    date_of_graduation date
+);
+
+-- Create a table named specializations
+CREATE TABLE specializations (
+    vet_id integer NOT NULL,
+    species_id integer NOT NULL,
+    PRIMARY KEY (vet_id, species_id),
+    CONSTRAINT fk_Vets  
+    FOREIGN KEY(vet_id) REFERENCES vets(id),
+    CONSTRAINT fk_Species  
+    FOREIGN KEY(species_id) REFERENCES species(id)
+);
+
+-- Create a table named visits
+CREATE TABLE visits (
+    vet_id integer NOT NULL,
+    animals_id integer NOT NULL,
+    date_visited date,
+    PRIMARY KEY (vet_id, animals_id, date_visited),
+    CONSTRAINT fk_Vets  
+    FOREIGN KEY(vet_id) REFERENCES vets(id),
+    CONSTRAINT fk_animals  
+    FOREIGN KEY(animals_id) REFERENCES animals(id)
+); 
